@@ -4,6 +4,8 @@
  * Purpose: Assignment for week 7
  * 
  */
+using System.Xml.Linq;
+
 namespace COMP003A.Assignment07
 {
     internal class Program
@@ -22,10 +24,32 @@ namespace COMP003A.Assignment07
 
             /* Array IsPalindrome Section */
             SectionSeparator("Array - IsPalindrome");
-            Console.WriteLine("Please enter a word to check if it is a palindrome");
+            Console.WriteLine("\nPlease enter a word to check if it is a palindrome");
             string word_1 = Console.ReadLine();
             IsPalindrome(word_1);
+
+            /* List Add Section */
+            SectionSeparator("List - Add Section");
+
+            List<string> names = new List<string> ();
+            do
+            {
+                Console.WriteLine($"\n" + "Please enter a name:");
+                names.Add(Console.ReadLine());
+
+                Console.WriteLine("Press any key to add more or (e) to exit");               
+            } while (Console.ReadKey().Key != ConsoleKey.E);
+
+            /* List - Traversal Section */
+            Console.WriteLine("\n");
+            SectionSeparator("List - Traversal Section");
+            TraverseList(names);
+
+            /* List - Reverse Traversal Section */
+            SectionSeparator("List - Reverse Traversal Section");
+            ReverseTraversalList(names);
         }
+        // Main End
 
         /// <summary>
         /// Separates section using different headers
@@ -33,9 +57,9 @@ namespace COMP003A.Assignment07
         /// <param name="sectionSeparator">Header name</param>
         static void SectionSeparator(string sectionSeparator)
         {
-            Console.WriteLine("".PadLeft(50, '*'));
+            Console.WriteLine("".PadLeft(55, '*'));
             Console.WriteLine($"\t{sectionSeparator} Section");
-            Console.WriteLine("".PadLeft(50, '*'));
+            Console.WriteLine("".PadLeft(55, '*'));
         }
 
         /// <summary>
@@ -66,15 +90,39 @@ namespace COMP003A.Assignment07
 
             if (word_1 == "") // checks if {reverse}'s array is still == to {input}'s array; if not IsPalindrome() == "false"
             {
-                Console.WriteLine("invalid");
+                Console.WriteLine("Invalid Input!");
             }
             else if (input == reverse)
             {
-                Console.WriteLine("True");
+                Console.WriteLine($"Is the word {input} palindrome: True");
             }
-            else Console.WriteLine("False");
+            else Console.WriteLine($"Is the word {input} palindrome: False");
         }
 
+        /// <summary>
+        /// ListTraversal
+        /// </summary>
+        /// <param name="List">Prints List in the order inputted</param>
+        static void TraverseList(List<string> names)
+        {
+            foreach (string name in names)
+            {
+                Console.WriteLine(name);
+            }
+        }
+
+        /// <summary>
+        /// ReverseListTraversal
+        /// </summary>
+        /// <param name="List" >Prints list in reverse order</param>
+        static void ReverseTraversalList(List<string> names)
+        {
+            names.Reverse();
+            foreach (string name in names)
+            {               
+                Console.WriteLine(name);
+            }
+        }
 
     }
 }
